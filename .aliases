@@ -1,0 +1,30 @@
+#!/usr/bin/sh
+
+# git commands
+
+alias commit="git commit -m"
+alias add="git add"
+alias push="git push"
+alias amend="git commit --amend"
+alias glog="git log"
+alias status="git status"
+alias replink="git remote add"
+
+# file editing shortcuts
+
+alias v="nvim"
+alias zrc="nvim ~/.zshrc"
+alias i3rc="nvim ~/.config/i3/config"
+alias barconfig="nvim ~/.config/polybar/config"
+
+# yaourt and pacman commands
+
+alias unlock="sudo rm /var/lib/pacman/db.lck"
+
+# general commands
+
+alias py="python"
+alias py2="python2"
+alias j="jump"
+alias connect="nmcli dev wifi connect"
+alias checkstyle="python ~/.scripts/checkstyle.py"

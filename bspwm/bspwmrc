@@ -1,0 +1,26 @@
+#!/bin/sh
+sxhkd &
+~/.xinitrc &
+
+bspc monitor eDP1   -d 0 1 2 3 4 5
+bspc monitor HDMI1  -d 0 1 2 3 4 5
+
+bspc config border_width         2
+bspc config window_gap          10
+
+bspc config split_ratio           0.50
+bspc config borderless_monocle    true
+bspc config gapless_monocle       true
+bspc config focus_follows_pointer true
+
+bspc config active_border_color   '#666666'
+bspc config normal_border_color   '#192028'
+bspc config focused_border_color  '#8DC9C3'
+bspc config presel_feedback_color '#192028'
+
+bspc rule -a Firefox desktop=^1
+bspc rule -a PomoDoneApp desktop=^6
+bspc rule -a Pcmanfm desktop=^6
+bspc rule -a "Google Play Music Desktop Player" desktop=^5
+bspc rule -a Pavucontrol state=floating desktop=^5
+bspc rule -a *:sun-awt-X11-XFramePeer state=floating
