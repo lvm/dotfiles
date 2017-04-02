@@ -15,7 +15,7 @@ margin-right = 5
 monitor = eDP1
 width = 1900
 offset-x = 10
-offset-y = 5
+offset-y = 2
 height = 30
 
 overline-size = 2
@@ -37,13 +37,14 @@ font-1 = unifont:size=6:heavy:fontformat=truetype;-2
 font-2 = FontAwesome:pixelsize=11;1
 
 modules-left = bspwm
-modules-center = date
-modules-right = redshift mail volume network battery powermenu
+modules-right = battery volume mail date powermenu
 
 wm-restack = bspwm
 
-scroll-up = bspwm-desknext
-scroll-down = bspwm-deskprev
+[module/title]
+type = internal/xwindow
+label = %title%
+label-maxlen = 50
 
 [module/mail]
 type = custom/script
@@ -83,8 +84,6 @@ type = custom/menu
 
 label-open =   
 label-close = cancel
-label-open-padding = 1
-label-close-padding = 1
 
 menu-0-0 = reboot
 menu-0-0-exec = menu-open-1
@@ -116,7 +115,7 @@ interval = 1.0
 
 ; See "man date" for details on how to format the date string
 ; NOTE: if you want to use syntax tags here you need to use %%{...}
-date = %d %B
+date = %d %b
 
 ; Optional time format
 time = %H:%M
@@ -128,13 +127,13 @@ time-alt = %H:%M:%S
 
 ; Available tags:
 ;   <label> (default)
-format =  <label>
+format = <label>
 
 ; Available tokens:
 ;   %date%
 ;   %time%
 ; Default: %date%
-label = %date% %time%
+label = %time%
 label-foreground = ${colors.foreground-alt}
 [module/bspwm]
 type = internal/bspwm
