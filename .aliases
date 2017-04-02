@@ -13,13 +13,14 @@ alias replink="git remote add"
 # file editing shortcuts
 
 alias v="nvim"
-alias zrc="nvim ~/.zshrc"
-alias i3rc="nvim ~/.config/i3/config"
-alias barconfig="nvim ~/.config/polybar/config"
+alias zshrc="nvim ~/.zshrc"
+alias bspwmrc="nvim ~/.config/bspwm/bspwmrc"
+alias polyconfig="nvim ~/.config/polybar/config"
+alias sxhkdrc="nvim ~/.config/sxhkd/sxhkdrc"
 
 # yaourt and pacman commands
 
-alias unlock="sudo rm /var/lib/pacman/db.lck"
+alias unlockdb="sudo rm /var/lib/pacman/db.lck"
 
 # general commands
 

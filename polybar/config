@@ -13,8 +13,6 @@ margin-right = 5
 
 [bar/main]
 monitor = eDP1
-background = #9a101112
-foreground = ${colors.foreground-alt}
 width = 1900
 offset-x = 10
 offset-y = 5
@@ -23,6 +21,8 @@ height = 30
 overline-size = 2
 underline-size = 2
 
+background = #9a101112
+foreground = ${colors.foreground-alt}
 underline-color = #00f
 overline-color = #f00
 
@@ -60,7 +60,7 @@ exec = redshift.sh
 [module/network]
 type = custom/script
 format-foreground = ${colors.foreground-alt}
-exec = connectivity
+exec = connectivity.sh
 
 [module/volume]
 type = internal/volume
@@ -158,7 +158,7 @@ label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 
 label-empty = %icon%
-label-empty-foreground = ${colors.foreground}
+label-empty-foreground = #101112
 label-empty-padding = 2
 
 [module/battery]

@@ -16,20 +16,20 @@ super + ctrl + s
 
 # Pulse Audio controls
 XF86AudioRaiseVolume
-    vol up &
+    amixer -q sset Master 5%+ &
 
 XF86AudioLowerVolume
-    vol down &
+    amixer -q sset Master 5%- &
 
 XF86AudioMute
-    vol mute &
+    amixer -q sset Master toggle &
 
 # brightness
 XF86KbdBrightnessUp
-    light up &
+    xbacklight -inc 5 &
 
 XF86KbdBrightnessDown
-    light down &
+    xbacklight -dec 5 &
 #
 # wm independent hotkeys
 #
@@ -40,7 +40,7 @@ super + Return
 
 # program launcher
 super + @space
-    dmenu_run -fn "ypn envypn:style=Regular:pixelsize=12" -nf "#ffeeff" -nb "#101112" -sb "#7495B6" -sf "#D8D8D8" -l 0 -w 550 -p ">"
+    sh applauncher.sh
 
 # make sxhkd reload its configuration files:
 super + Escape

@@ -2,10 +2,10 @@
 
 compton -b &
 xrdb -merge "$HOME/.Xresources"
-checkredshift
+checkredshift.sh
 urxvtd -q -f &
 mopidy &
 launchbar &
-feh --bg-fill ~/Pictures/nathan-anderson-228741.jpg
+feh --bg-fill ~/Pictures/patrick-hendry-39127.jpg
 rfkill block all
 
