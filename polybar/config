@@ -21,7 +21,7 @@ height = 30
 overline-size = 2
 underline-size = 2
 
-background = #9a101112
+background = #b0101112
 foreground = ${colors.foreground-alt}
 underline-color = #00f
 overline-color = #f00

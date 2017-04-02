@@ -40,7 +40,7 @@ super + Return
 
 # program launcher
 super + @space
-    sh applauncher.sh
+    sh applauncher.sh &
 
 # make sxhkd reload its configuration files:
 super + Escape
