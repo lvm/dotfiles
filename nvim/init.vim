@@ -30,7 +30,7 @@ if dein#load_state('/home/verb/.config/nvim')
   call dein#add('junegunn/goyo.vim')
   call dein#add('tpope/vim-fugitive')
   call dein#add('airblade/vim-gitgutter')
-  call dein#add('ayu-theme/ayu-vim')
+
   " Required:
   call dein#end()
   call dein#save_state()
@@ -57,7 +57,6 @@ colorscheme crayon
 let g:airline_theme='crayon2'
 
  " editor settings
- set textwidth=75
  set shiftwidth=4
  set shiftround
  set expandtab
@@ -98,4 +97,31 @@ let g:airline_theme='crayon2'
  nmap <F5> <Plug>(JavaComplete-Imports-Add)
  imap <F5> <Plug>(JavaComplete-Imports-Add)
 
- source ~/.config/nvim/all.vim
+"" vim airline
+set laststatus=2
+set noshowmode
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline_powerline_fonts = 0
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#left_alt_sep = ''
+let g:airline_section_z = '%3p%%'
+let g:airline_section_y = ''
+let g:airline_section_b = ''
+let g:airline_mode_map = {
+     \ '__' : '-',
+     \ 'n'  : 'N',
+     \ 'i'  : 'I',
+     \ 'R'  : 'R',
+     \ 'c'  : 'C',
+     \ 'v'  : 'V',
+     \ 'V'  : 'V',
+     \ '^V' : 'V',
+     \ 's'  : 'S',
+     \ 'S'  : 'S',
+     \ '^S' : 'S',
+     \ }
+
+"" deoplete
+let g:deoplete#enable_at_startup = 1
