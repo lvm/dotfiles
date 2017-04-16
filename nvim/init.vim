@@ -51,10 +51,10 @@ endif
  let mapleader = ";"
  vnoremap < <gv  " better indentation
  vnoremap > >gv  " better indentation
- 
+
 " Theme
-colorscheme crayon
-let g:airline_theme='crayon2'
+colorscheme ryuuko
+let g:airline_theme='base16'
 
  " editor settings
  set shiftwidth=4
@@ -89,7 +89,7 @@ let g:airline_theme='crayon2'
  map <Down>  <nop>
  map <Left>  <nop>
  map <Right> <nop>
- 
+
  " javacomplete2
  autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
