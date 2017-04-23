@@ -14,6 +14,14 @@ super + shift + n
 super + ctrl + s
     scrot
 
+# Lock screen
+super + alt + l
+    lock.sh
+
+# Scratchpad
+alt + s
+   scratchpad
+
 # Pulse Audio controls
 XF86AudioRaiseVolume
     amixer -q sset Master 5%+ &
@@ -34,9 +42,17 @@ XF86KbdBrightnessDown
 # wm independent hotkeys
 #
 
+# wal
+super + ctrl + w
+wal -i $HOME/Pictures/Wallpapers -o wal-set
+
+#
+ctrl + d
+    changedir.sh
+
 # terminal emulator
 super + Return
-    urxvt
+    termite
 
 # program launcher
 super + @space

@@ -6,6 +6,6 @@ checkredshift.sh
 urxvtd -q -f &
 mopidy &
 launchbar &
-feh --bg-fill ~/Pictures/wallhaven-428798.jpg
+feh --bg-fill ~/Pictures/wallhaven-493318.jpg
 rfkill block all
-
+wal -i "$(< "${HOME}/.cache/wal/wal")"

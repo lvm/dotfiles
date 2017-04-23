@@ -1,50 +1,37 @@
 [colors]
 foreground-alt = #D8D8D8
-foreground = #555555
-blue = #7495B6
-primary = #FFB52A
-alert = #BD2C40
-
-[global/wm]
-margin-top = 5
-margin-bottom = 5
-margin-left = 5
-margin-right = 5
-
-[icons]
-empty    = 
-occupied = 
-focused  = 
+bluebg = #7cd0d6
+urgbg = #fc6a6a
+bg    = ${xrdb:color0}
+hbg   = ${xrdb:color1}
+ubg   = ${xrdb:color15}
 
 [bar/main]
 monitor = eDP1
-height = 25
-width = 1000
-offset-x = 500
-offset-y = 5
+height = 30
+width = 100%
 
 overline-size = 2
 underline-size = 2
 
-background = #1D1F21
+background = ${colors.bg}
 foreground = ${colors.foreground-alt}
 underline-color = #00f
 overline-color = #f00
 
 spacing = 1
 padding-left = 0
-padding-right = 2
+padding-right = 0
 module-margin-left = 2
 module-margin-right = 2
 
-font-0 = Dina:style=Regular:size=9;1
+font-0 = Dina:style=Regular:pixelsize=10;1
 font-1 = unifont:size=6:heavy:fontformat=truetype;-2
-font-2 = FontAwesome:pixelsize=11;1
-
+font-2 = MaterialDesignIcons:pixelsize=11;1
 
 modules-left = bspwm
-modules-center = date space
-modules-right = battery mail redshift volume powermenu
+modules-center = date
+modules-right = redshift battery network volume icon mail
 
 pin-workspaces = true
 wm-restack = bspwm
@@ -54,17 +41,16 @@ type = internal/xwindow
 label = %title%
 label-maxlen = 50
 
-[module/space]
+[module/icon]
 type = custom/script
-exec = echo "   "
+format-background = ${colors.hbg}
+format-padding = 1
+exec =  echo ""
 
 [module/mail]
-type = custom/script
+type=custom/script
 interval = 10
-format = <label>
-format-prefix = "  "
-format-foreground = ${colors.foreground-alt}
-exec = python3 ~/.scripts/mail
+exec = mailcount.sh
 
 [module/redshift]
 type = custom/script
@@ -72,29 +58,26 @@ exec = redshift.sh
 
 [module/network]
 type = custom/script
-format-foreground = ${colors.foreground-alt}
 exec = connectivity.sh
 
 [module/volume]
 type = internal/volume
 format-volume = <ramp-volume> <label-volume>
-format-volume-foreground = ${colors.foreground-alt}
 format-muted = <label-muted>
-format-muted-foreground = ${colors.foreground-alt}
 label-volume = %percentage%
 
-label-muted =   muted
+label-muted =   muted
 label-muted-foreground = #aaa
 
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
 ramp-headphones-0 = 
 
 [module/powermenu]
 type = custom/menu
 
-label-open = 
+label-open = 
 label-close = cancel
 
 menu-0-0 = reboot
@@ -111,12 +94,9 @@ menu-1-0-padding = 1
 menu-2-0 = power off?
 menu-2-0-exec = sudo poweroff
 menu-2-0-padding = 1
-label-open-foreground = ${colors.foreground-alt}
-label-close-foreground = ${colors.foreground-alt}
 
 [module/count]
 type = custom/script
-format-foreground = ${colors.foreground-alt}
 exec = count.sh
 
 [module/date]
@@ -139,38 +119,36 @@ time-alt = %H:%M:%S
 
 ; Available tags:
 ;   <label> (default)
-format = <label>
+format = <label>
 
 ; Available tokens:
 ;   %date%
 ;   %time%
 ; Default: %date%
-label = %time%
-label-foreground = ${colors.foreground-alt}
+label = %date% %time%
+
 [module/bspwm]
 type = internal/bspwm
-ws-icon-0 = 0;
-ws-icon-1 = 1;
-ws-icon-2 = 2;
-ws-icon-3 = 3;
-ws-icon-4 = 4;
-ws-icon-default = 
+ws-icon-0 = 0;
+ws-icon-1 = 1;
+ws-icon-2 = 2;
+ws-icon-3 = 3;
+ws-icon-default = 
 
-label-focused = ${icons.focused}
-label-focused-foreground = ${colors.foreground-alt}
-;label-focused-underline = ${colors.blue}
-label-focused-padding = 1
+label-focused = %icon%
+label-focused-background = ${colors.hbg}
+label-focused-padding = 3
 
-label-occupied = ${icons.occupied}
-label-occupied-padding = 1
+label-occupied = %icon%
+label-occupied-underline = ${colors.ubg}
+label-occupied-padding = 3
 
-label-urgent = ${icons.occupied}
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 1
+label-urgent = %icon%
+label-urgent-background = ${colors.urgbg}
+label-urgent-padding = 3
 
-label-empty = ${icons.empty}
-label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 1
+label-empty = %icon%
+label-empty-padding = 3
 
 [module/battery]
 type = internal/battery
@@ -200,14 +178,12 @@ poll-interval = 5
 ;   <ramp-capacity>
 ;   <animation-charging>
 format-charging = <animation-charging> <label-charging>
-format-charging-foreground = ${colors.foreground-alt}
 
 ; Available tags:
 ;   <label-discharging> (default)
 ;   <bar-capacity>
 ;   <ramp-capacity>
 format-discharging = <ramp-capacity> <label-discharging>
-format-discharging-foreground = ${colors.foreground-alt}
 
 ; Available tags:
 ;   <label-full> (default)
@@ -230,21 +206,21 @@ label-discharging = %percentage%%
 label-full = Fully charged
 
 ; Only applies if <ramp-capacity> is used
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
 
 ; Only applies if <bar-capacity> is used
 bar-capacity-width = 10
 
 ; Only applies if <animation-charging> is used
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-3 = 
-animation-charging-4 = 
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
 
 ; Framerate in milliseconds
 animation-charging-framerate = 750
