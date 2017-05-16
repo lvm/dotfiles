@@ -4,8 +4,30 @@ Xft.autohint: 0
 Xft.hinting: 1
 Xft.lcdfilter: lcddefault
 Xft.hintstyle: hintslight
-Xft.dpi: 110
+Xft.dpi: 125
 Xft.rgba: rgb
 
 ! X settings
 Xcursor.size: 60
+Xcursor.theme: OSX-ElCap
+
+! Set the font
+URxvt.font: xft:Droid Sans Mono:style=Regular:size=10
+URxvt.boldFont: xft:Droid Sans Mono:style=Bold:size=10
+URxvt.letterSpace: -1
+
+! Disable scrollbar
+URxvt.scrollBar: false
+
+! Set terminal padding
+URxvt.internalBorder: 60
+
+! Enables copy/paste with Ctrl-Shift-C/V
+URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+URxvt.perl-ext-common: default,clipboard
+
+! Enable cursor underline
+URxvt*cursorUnderline: true

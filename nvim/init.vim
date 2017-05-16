@@ -1,25 +1,19 @@
 if &compatible
   set nocompatible
 endif
-filetype off
+filetype on
 " append to runtime path
 set rtp+=/usr/share/vim/vimfiles
 " initialize dein, plugins are installed to this directory
 call dein#begin(expand('~/.cache/dein'))
 " add packages here, e.g:
-call dein#add('qwelyt/TrippingRobot')
 call dein#add('Valloric/YouCompleteMe')
-call dein#add('artur-shaik/vim-javacomplete2')
 call dein#add('Shougo/deoplete.nvim', { 'do': ':UpRemotePlugins' })
 call dein#add('Shougo/denite.nvim')
-call dein#add('Shougo/unite.vim')
 call dein#add('Shougo/vimfiler')
 call dein#add('scrooloose/nerdtree')
-call dein#add('vim-airline/vim-airline')
 call dein#add('Yggdroot/indentLine')
-call dein#add('vim-airline/vim-airline-themes')
 call dein#add('airblade/vim-gitgutter')
-call dein#add('dylanaraps/wal')
 
 " exit dein
 call dein#end()
@@ -37,12 +31,23 @@ filetype plugin on
  vnoremap < <gv  " better indentation
  vnoremap > >gv  " better indentation
 
-" Theme
-set background=dark
-colorscheme wal
-let g:airline_theme='base16'
+ " Theme
 
+if (empty($TMUX))
+  if (has("nvim"))
+  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=0
+  endif
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
+
+ colorscheme ryuuko
+ set background=dark
+ 
  " editor settings
+ set tabstop=4
  set shiftwidth=4
  set shiftround
  set expandtab
@@ -83,31 +88,10 @@ let g:airline_theme='base16'
  nmap <F5> <Plug>(JavaComplete-Imports-Add)
  imap <F5> <Plug>(JavaComplete-Imports-Add)
 
-"" vim airline
-set laststatus=2
+set statusline=%=%P\ %f\ %m
+set fillchars=vert:\ ,stl:\ ,stlnc:\ 
+set laststatus=1
 set noshowmode
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_powerline_fonts = 0
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#left_alt_sep = ''
-let g:airline_section_z = '%3p%%'
-let g:airline_section_y = ''
-let g:airline_section_b = ''
-let g:airline_mode_map = {
-     \ '__' : '-',
-     \ 'n'  : 'N',
-     \ 'i'  : 'I',
-     \ 'R'  : 'R',
-     \ 'c'  : 'C',
-     \ 'v'  : 'V',
-     \ 'V'  : 'V',
-     \ '^V' : 'V',
-     \ 's'  : 'S',
-     \ 'S'  : 'S',
-     \ '^S' : 'S',
-     \ }
 
-"" deoplete
-let g:deoplete#enable_at_startup = 1
+ "" deoplete
+ let g:deoplete#enable_at_startup = 1

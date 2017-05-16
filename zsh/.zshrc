@@ -3,7 +3,6 @@ export EDITOR='nvim'
 export _JAVA_AWT_WM_NONREPARTENTING=1
 
 # Source antigen
-
 source /usr/share/zsh/share/antigen.zsh
 
 # Load the oh-my-zsh's library.
@@ -27,12 +26,7 @@ antigen apply
 # Other sources
 source $HOME/.aliases
 source $HOME/.scripts/tmuxinator.zsh
-source $HOME/.scripts/prompts/minimal.zsh
-source $HOME/.cache/wal/colors.sh
-
-# Import colorscheme from 'wal'
-wal -r
-clear
+source $HOME/.scripts/prompts/spaceship.zsh-theme
 
 # termite
 if [[ $TERM == xterm-termite ]]; then
