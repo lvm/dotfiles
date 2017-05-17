@@ -1,64 +1,54 @@
 [colors]
-foreground-alt = #D8D8D8
+foreground-alt = #232c34
 bluebg = #7cd0d6
 urgbg = #fc6a6a
-bg    = ${xrdb:color0}
-hbg   = ${xrdb:color1}
-ubg   = ${xrdb:color15}
 
 [bar/main]
-monitor = eDP1
-height = 30
-width = 100%
+monitor = eDP-1
+height = 25
+width = 1840
+offset-x = 40
+offset-y = 5
 
-overline-size = 2
-underline-size = 2
-
-background = ${colors.bg}
+background = #ECE0D7
 foreground = ${colors.foreground-alt}
 underline-color = #00f
 overline-color = #f00
 
-spacing = 1
-padding-left = 0
-padding-right = 0
-module-margin-left = 2
+spacing = 0
+padding-right = 2
 module-margin-right = 2
+module-margin-left = 2
 
-font-0 = Dina:style=Regular:pixelsize=10;1
-font-1 = unifont:size=6:heavy:fontformat=truetype;-2
-font-2 = MaterialDesignIcons:pixelsize=11;1
+override-redirect = true
+wm-restack = i3
 
-modules-left = bspwm
-modules-center = date
-modules-right = redshift battery network volume icon mail
+font-0 = xos4 terminus:pixelsize=11;
+font-1 = unifont:fontformat=truetype:size=11:antialias=false;0
+font-2 = Wuncon Siji:size:12;1.5
 
-pin-workspaces = true
-wm-restack = bspwm
+modules-left = i3
+modules-center = mpd
+modules-right = mail updates volume date battery powermenu
+
+[module/weather]
+type = custom/script
+exec = weather.sh
+click-middle = weather.sh
+label = %output%
+interval = 1800
 
 [module/title]
 type = internal/xwindow
 label = %title%
 label-maxlen = 50
 
-[module/icon]
-type = custom/script
-format-background = ${colors.hbg}
-format-padding = 1
-exec =  echo ""
-
 [module/mail]
-type=custom/script
-interval = 10
-exec = mailcount.sh
-
-[module/redshift]
 type = custom/script
-exec = redshift.sh
-
-[module/network]
-type = custom/script
-exec = connectivity.sh
+format-prefix =" "
+exec = python3 ~/.scripts/mail
+interval = 100
+format-foreground = ${colors.foreground-alt}
 
 [module/volume]
 type = internal/volume
@@ -66,18 +56,32 @@ format-volume = <ramp-volume> <label-volume>
 format-muted = <label-muted>
 label-volume = %percentage%
 
-label-muted =   muted
+label-muted =   muted
 label-muted-foreground = #aaa
 
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
-ramp-headphones-0 = 
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+format-volume-foreground = ${colors.foreground-alt}
+
+
+[module/mpd]
+type = internal/mpd
+host = 127.0.0.1
+port = 6600
+
+format-online = <label-song>
+format-offline = <label-offline>
+label-song =   %artist% - %title%
+label-offline = 
+
+interval = 2
 
 [module/powermenu]
 type = custom/menu
 
-label-open = 
+label-open = 
 label-close = cancel
 
 menu-0-0 = reboot
@@ -85,19 +89,21 @@ menu-0-0-exec = menu-open-1
 menu-0-1 = power off
 menu-0-1-exec = menu-open-2
 menu-0-0-padding = 1
-menu-0-1-padding = 1
+menu-0-1-padding = 0
 
 menu-1-0 = reboot?
 menu-1-0-exec = sudo reboot
-menu-1-0-padding = 1
+menu-1-0-padding = 0
 
 menu-2-0 = power off?
 menu-2-0-exec = sudo poweroff
-menu-2-0-padding = 1
+menu-2-0-padding = 0
 
-[module/count]
+[module/updates]
 type = custom/script
 exec = count.sh
+interval = 100
+format-foreground = ${colors.foreground-alt} 
 
 [module/date]
 type = internal/date
@@ -119,36 +125,57 @@ time-alt = %H:%M:%S
 
 ; Available tags:
 ;   <label> (default)
-format = <label>
+format =  <label>
 
 ; Available tokens:
 ;   %date%
 ;   %time%
 ; Default: %date%
-label = %date% %time%
+label = %time%
+format-foreground = ${colors.foreground-alt}
 
-[module/bspwm]
-type = internal/bspwm
-ws-icon-0 = 0;
-ws-icon-1 = 1;
-ws-icon-2 = 2;
-ws-icon-3 = 3;
-ws-icon-default = 
+[module/i3]
+type = internal/i3
+strip-wsnumbers = true
+index-sort = true
+enable-click = false
+enable-scroll = false
+wrapping-scroll = false
+reverse-scroll = false
+
+ws-icon-0 = 1;1
+ws-icon-1 = 2;2
+ws-icon-2 = 3;3
+ws-icon-3 = 4;4
+ws-icon-4 = 5;5
+ws-icon-5 = 6;6
+ws-icon-6 = 7;7
+ws-icon-7 = 8;8
+ws-icon-8 = 9;9
+ws-icon-9 = 0;10
+
+; Available tags:
+;   <label-state> (default) - gets replaced with <label-(focused|unfocused|visible|urgent)>
+;   <label-mode> (default)
+format = <label-state> <label-mode>
+
+label-mode = %mode%
+label-mode-padding = 2
+label-mode-background = #e60053
 
 label-focused = %icon%
-label-focused-background = ${colors.hbg}
-label-focused-padding = 3
+label-focused-background = #78a090
+label-focused-padding = 2
 
-label-occupied = %icon%
-label-occupied-underline = ${colors.ubg}
-label-occupied-padding = 3
+label-unfocused = %icon%
+label-unfocused-foreground = ${colors.foreground-alt}
+label-unfocused-padding = 2
+
+label-visible = %icon%
+label-visible-padding = 2
 
 label-urgent = %icon%
-label-urgent-background = ${colors.urgbg}
-label-urgent-padding = 3
-
-label-empty = %icon%
-label-empty-padding = 3
+label-urgent-padding = 2
 
 [module/battery]
 type = internal/battery
@@ -206,21 +233,19 @@ label-discharging = %percentage%%
 label-full = Fully charged
 
 ; Only applies if <ramp-capacity> is used
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
 
 ; Only applies if <bar-capacity> is used
 bar-capacity-width = 10
 
 ; Only applies if <animation-charging> is used
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-3 = 
-animation-charging-4 = 
+animation-charging-0 = 
 
 ; Framerate in milliseconds
 animation-charging-framerate = 750
+
+format-discharging-foreground = ${colors.foreground-alt}
+format-charging-foreground = ${colors.foreground-alt}
+format-full-foreground = ${colors.foreground-alt}

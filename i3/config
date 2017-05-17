@@ -14,8 +14,8 @@ bindsym $mod+Return exec gnome-terminal
 bindsym $mod+Shift+q kill
 
 # Set colors from Xresources
-set_from_resource $fg i3wm.color15 #f0f0f0
-set_from_resource $bg i3wm.color10 #f0f0f0
+set_from_resource $fg i3wm.color15 #ECE0D7
+set_from_resource $bg i3wm.color10 #ECE0D7
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec applauncher.sh
@@ -150,3 +150,6 @@ bindsym $mod+Shift+s exec "scratchpad"
 
 # xinitrc
 exec "sh .xinitrc"
+
+# screenshot
+bindsym $mod+p exec "scrot"
